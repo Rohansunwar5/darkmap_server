@@ -1,38 +1,38 @@
-import crypto from 'crypto';
-import { UserRepository } from '../repository/user.repository';
+// import crypto from 'crypto';
+// import { UserRepository } from '../repository/user.repository';
 
-class PaymentService {
-  constructor(private readonly _userRepository: UserRepository) {}
+// class PaymentService {
+//   constructor(private readonly _userRepository: UserRepository) {}
 
-  async verifyAndAddCredits(  userId: string, 
-    orderId: string, 
-    paymentId: string, 
-    signature: string,
-    planType: string ) {
+//   async verifyAndAddCredits(  userId: string, 
+//     orderId: string, 
+//     paymentId: string, 
+//     signature: string,
+//     planType: string ) {
     
-      const generatedSignature = crypto
-      .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || '')
-      .update(`${orderId}|${paymentId}`)
-      .digest('hex');
+//       const generatedSignature = crypto
+//       .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || '')
+//       .update(`${orderId}|${paymentId}`)
+//       .digest('hex');
 
-    if (generatedSignature !== signature) {
-      return { success: false };
-    }
+//     if (generatedSignature !== signature) {
+//       return { success: false };
+//     }
 
-    const creditsToAdd = planType === 'silver' ? 20 : 50;
+//     const creditsToAdd = planType === 'silver' ? 20 : 50;
 
-    // Update user's credits
-    const updatedUser = await this._userRepository.updateUserCredits(userId, creditsToAdd);
+//     // Update user's credits
+//     const updatedUser = await this._userRepository.updateUserCredits(userId, creditsToAdd);
     
-    if (!updatedUser) {
-      return { success: false };
-    }
+//     if (!updatedUser) {
+//       return { success: false };
+//     }
 
-    return {
-      success: true,
-      credits: updatedUser.credits
-    };
-  }
-}
+//     return {
+//       success: true,
+//       credits: updatedUser.credits
+//     };
+//   }
+// }
 
-export default new PaymentService(new UserRepository()); 
+// export default new PaymentService(new UserRepository()); 

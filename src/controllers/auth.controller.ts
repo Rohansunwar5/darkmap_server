@@ -21,12 +21,3 @@ export const profile = async (req: Request, res: Response, next: NextFunction) =
 
   next(response);
 };
-
-// export const deleteAccount = async (req: Request, res: Response, next: NextFunction) => {
-//   const { code } = req.body;
-//   const { _id } = req.user;
-//   const response = await authService.deleteAccount(code, _id);
-
-//   next(response);
-// };
-

@@ -25,10 +25,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       minLength: PASSWORD_MIN_LENGTH,
     },
-    credits: {
-      type: Number,
-      default: 0,
-    },
+    // credits: {
+    //   type: Number,
+    //   default: 0,
+    // },
   },
   { timestamps: true }
 );
@@ -41,7 +41,7 @@ export interface IUser extends mongoose.Schema {
   lastName: string;
   email: string;
   password: string;
-  credits: number;
+  // credits: number;
 }
 
 export default mongoose.model<IUser>('User', userSchema);

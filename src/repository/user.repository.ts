@@ -25,16 +25,16 @@ export class UserRepository {
   }
 
  
- async updateUserCredits(userId: string, creditDelta: number) {
-    return this._model.findByIdAndUpdate(
-        userId,
-        { $inc: { credits: creditDelta } },
-        { new: true }
-    );
-}
+//  async updateUserCredits(userId: string, creditDelta: number) {
+//     return this._model.findByIdAndUpdate(
+//         userId,
+//         { $inc: { credits: creditDelta } },
+//         { new: true }
+//     );
+// }
 
   async getUserById(id: string) {
-    return this._model.findById(id).select('img _id firstName lastName email credits phoneNumber verified createdAt updatedAt __v');
+    return this._model.findById(id).select('_id firstName lastName email verified createdAt updatedAt __v');
   }
 
   async updateUser(params: {
