@@ -1,14 +1,14 @@
 {
-  "name": "wp-node-js-ts-template",
+  "name": "darkmap-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
+   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node-dev --files --respawn src/index.ts",
-    "prepare": "husky install",
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi",
     "clean": "rimraf dist/",
-    "build": "npm run clean && tsc",
+    "build": "tsc && cp -r src/templates dist/templates",
     "lint:fix": "eslint --fix --ext .ts ."
   },
   "keywords": [],
