@@ -9,6 +9,7 @@ const config = {
   REDIS_PORT: process.env.REDIS_PORT! as string,
   PORT: process.env.PORT! as string,
   JWT_SECRET: process.env.JWT_SECRET! as string,
+  ADMIN_JWT_SECRET: process.env.ADMIN_JWT_SECRET! as string,
   ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY! as string,
 
   SERVER_NAME: `${process.env.SERVER_NAME}-${process.env.NODE_ENV}`! as string,
