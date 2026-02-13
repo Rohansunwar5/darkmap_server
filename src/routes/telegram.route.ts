@@ -1,12 +1,9 @@
 import { Router } from 'express';
 import { asyncHandler } from '../utils/asynchandler';
-// import { tgDev } from '../controllers/telegram.controller';
 import isLoggedIn from '../middlewares/isLoggedIn.middleware';
-import multer from 'multer';
 
-import { additionalChannel, channelMessages, searchChannels, startFirstServices, startSecondServices } from '../controllers/telegram.controller';
+import { additionalChannel, analyzeChannel, channelMessages, searchChannels, startFirstServices, startSecondServices } from '../controllers/telegram.controller';
 
-const upload = multer();
 const telegramRouter = Router();
 
 telegramRouter.post('/search-channels', isLoggedIn, asyncHandler(searchChannels));
@@ -14,7 +11,6 @@ telegramRouter.post('/additional-channel', isLoggedIn, asyncHandler(additionalCh
 telegramRouter.post('/channel-messages', isLoggedIn, asyncHandler(channelMessages));
 telegramRouter.post('/start-services1',  asyncHandler(startFirstServices));
 telegramRouter.post('/start-services2', asyncHandler(startSecondServices));
-// telegramRouter.post('/proxy/fetch-messages', isLoggedIn, upload.none(), asyncHandler(tgDev));
-
+telegramRouter.post('/analyze-channel', isLoggedIn, asyncHandler(analyzeChannel));
 
 export default telegramRouter;

@@ -35,3 +35,18 @@ export const startSecondServices = async (req: Request, res: Response, next: Nex
 
     next(response);
 } 
+
+export const analyzeChannel = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { channel_username } = req.body;
+        if (!channel_username) {
+            return res.status(400).json({ error: 'Channel username is required' });
+        }
+
+        const response = await telegramService.analyzeChannel(channel_username);
+        res.json(response);
+    } catch (error) {
+        next(error);
+    }
+}; 
+

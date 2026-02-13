@@ -127,6 +127,24 @@ class TelegramService {
 
         return response.data;
     }
+
+    async analyzeChannel(channelUsername: string) {
+        const response = await axios.post(
+            'https://analyze.darkmap.org/analyze-channel',
+            { channel_username: channelUsername },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+
+        if (response.status !== 200) {
+            throw new InternalServerError('Failed to analyze channel');
+        }
+
+        return response.data;
+    }
 }
 
 export default new TelegramService(new UserRepository());
